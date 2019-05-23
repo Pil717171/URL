@@ -83,7 +83,7 @@ class App {
         let container = document.createElement('a')
         console.log(this.inp.value)
         container.setAttribute('href', this.inp.value )
-        container.innerHTML = `${data} <br>`;
+        container.innerHTML = `Ваша короткая ссылка: ${data} ; Исходная ссылка: ${this.inp.value} <br>`;
         div.appendChild(container)
         this.inp.value = '';
     }
