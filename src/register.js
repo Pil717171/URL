@@ -1,8 +1,12 @@
+import { Login } from './login';
+
+
 export class Register {
     constructor (isRegistered) {
+        this.login = new Login(false);
+        this.login.checkLogger();
         this.isRegistered = isRegistered;
         this.checkLogin();
-        
         
     }
 
@@ -54,6 +58,7 @@ export class Register {
     sendRegistration(login, password) {
         
         console.log('Регистрация прошла успешно')
+        this.login.renderExitButton();
         fetch('http://localhost:3006/users', { method: 'post', headers: {
             'Content-Type': 'application/json',
         },
@@ -83,5 +88,5 @@ export class Register {
         console.log('Пароли не совпадают. Попробуйте еще')
     }
 
-
+    
  }

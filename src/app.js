@@ -1,5 +1,6 @@
 import { Router } from './router';
 import { Register } from './register';
+import { Login } from './login';
 
 class App {
     constructor () {
@@ -8,7 +9,8 @@ class App {
         this.router = new Router();
         this.links = [];
         this.register = new Register(false);
-        
+        this.login = new Login(false);
+        this.login.checkLogger();
         this.init();
         this.getLink();
         this.regBut();
@@ -96,6 +98,7 @@ class App {
        this.router.addRoute('', this.renderHomePage.bind(this));
        this.router.addRoute('#about', this.renderAboutPage.bind(this));
        this.router.addRoute('#main', this.renderMainPage.bind(this));
+       this.router.addRoute('#login', this.renderLoginPage.bind(this));
        this.router.addRoute('404', this.renderErrorPage.bind(this));
     }
 
@@ -146,6 +149,17 @@ class App {
        
     }
 
+    renderLoginPage() {
+        this.pages.forEach((i) => {
+            console.log(i)
+            i.classList.remove('visible')
+        })
+        let loginPage = document.querySelector('.logpage');
+        loginPage.classList.add('visible');
+        window.location.hash = '#login'
+       
+    }
+
     regBut() {
         let reg = document.querySelector('.registration');
         reg.addEventListener('click', () => {
@@ -160,7 +174,7 @@ class App {
         let log = document.querySelector('.login');
         log.addEventListener('click', () => {
             this.renderMainPage()
-            history.pushState( {},"main" , "#main");
+            history.pushState( {},"main" , "#login");
             window.dispatchEvent(new HashChangeEvent('hashchange'))
         })
     }

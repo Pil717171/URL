@@ -6,6 +6,10 @@
     display: none;
 }
 
+.exit {
+    display: none;
+}
+
 .visible {
     display: block;
 }
@@ -13,3 +17,4 @@
 .name-error {
     border: red;
 }
+
