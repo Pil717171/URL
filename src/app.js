@@ -7,11 +7,15 @@ class App {
         this.inp = document.querySelector('.big-link');
         this.router = new Router();
         this.links = [];
-        const register = new Register();
+        this.register = new Register(false);
+        
         this.init();
         this.getLink();
         this.regBut();
         this.logBut();
+        window.addEventListener('checkRegister', this.checkRegister.bind(this));
+        this.pages = document.querySelectorAll('.page');
+        
         
     }
 
@@ -96,25 +100,50 @@ class App {
     }
 
     renderHomePage() {
+        this.pages.forEach((i) => {
+            console.log(i)
+            i.classList.remove('visible')
+        })
         let homePage = document.querySelector('.home');
         console.log(homePage)
         homePage.classList.add('visible');
+        window.location.hash = ''
+       
     }
 
     renderAboutPage() {
+        this.pages.forEach((i) => {
+            console.log(i)
+            i.classList.remove('visible')
+        })
         let aboutPage = document.querySelector('.about');
         console.log(aboutPage)
         aboutPage.classList.add('visible');
+        window.location.hash = '#about'
+       
     }
 
     renderMainPage() {
+        console.log(this.pages)
+        this.pages.forEach((i) => {
+            console.log(i)
+            i.classList.remove('visible')
+        })
         let mainPage = document.querySelector('.main');
         mainPage.classList.add('visible');
+        window.location.hash = '#main'
+        
     }
 
     renderErrorPage() {
+        this.pages.forEach((i) => {
+            console.log(i)
+            i.classList.remove('visible')
+        })
         let errorPage = document.querySelector('.error');
         errorPage.classList.add('visible');
+        window.location.hash = '#error'
+       
     }
 
     regBut() {
@@ -136,7 +165,15 @@ class App {
         })
     }
 
+    checkRegister() {
+       if(this.register.isRegistered) {
+           console.log(1)
 
+            this.renderMainPage();
+       } else {
+           console.log('Ошибка регистрации')
+       }
+    }
 }
 
 const app = new App();

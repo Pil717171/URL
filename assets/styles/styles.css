@@ -9,3 +9,7 @@
 .visible {
     display: block;
 }
+
+.name-error {
+    border: red;
+}
