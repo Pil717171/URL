@@ -7,58 +7,194 @@
 
 	<title>URLer</title>
 
-	
+
 
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
 	<link href="assets/styles/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
+	<!-- exit block -->
 	<div class="exit">
-			<button class="exit-button"> Выйти </button><br><br>
-			
+		<button class="exit-button btn btn-info"> Выйти </button><br><br>
+
 	</div>
-	
-	
+
+	<!-- main page -->
 	<div class="page main">
-		<form>
-			<input type="text" class="big-link">
-			<button type="submit" class="submit">Send</button>
-		</form>
-		<div class="result"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col main-container-text">
+					<p class="col main-container-text-text"> Вы находитесь на странице укорачивания ссылок. Введите свою
+						ссылку в поле ввода и нажмите на кнопку "Generate". После этого под полем ввода Вы увидите
+						короткую ссылку</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col main-container">
+					<form>
+						<input type="text" class="big-link">
+						<button type="submit" class="submit btn btn-info">Send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col result">
+
+				</div>
+			</div>
+		</div>
 	</div>
 	<br>
 	<br>
-
+	<!-- home page -->
 	<div class="page home">
-		<form>
-			<button type="submit" class="registration">Registration</button>
-			<button type="submit" class="login">Login</button>
+		<div class="container home-container">
+			<div class="row">
+				<div class="container home-container-text">
+					<div class="row">
+						<div class="col home-text">
+							Доброго времени суток друзья. Вы попали на сервис по укорачиванию ссылок. Для работы Вам
+							необходимо быть зарегистрированным на нашем сайте. Если Вы уже зарегистрированы, то просто
+							войдите в свою учетную запись.
+						</div>
+					</div>
+				</div>
+				<div class="container home-container-buttons">
+					<div class="row ">
+						<div class="col home-buttons">
+							<button type="submit" class="registration btn btn-info">Registration</button>
+							<button type="submit" class="login btn btn-info">Login</button>
+						</div>
+					</div>
+				</div>
+				<div class="result"></div>
+			</div>
+		</div>
 
-		</form>
-			<div class="result"></div>
 	</div>
-
+	<!-- register -page -->
 	<div class="page about">
-		<form>
-			<input type="text" class="registration-login"><br>
-			<input type="password" class="registration-password"><br>
-			<input type="password" class="registration-password-check"><br>
-			<button type="submit" class="registration-submit">Registration</button>
-		</form>
+		<div class="container">
+			<div class="row main-form">
+				<form class="" method="post" action="#">
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Your Name</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control registration-login" name="name" id="name"
+									placeholder="Enter your Name" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="cols-sm-2 control-label">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg"
+										aria-hidden="true"></i></span>
+								<input type="password" class="form-control registration-password" name="password"
+									id="password" placeholder="Enter your Password" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg"
+										aria-hidden="true"></i></span>
+								<input type="password" class="form-control registration-password-check" name="confirm"
+									id="confirm" placeholder="Confirm your Password" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group ">
+						<a href="#" target="_blank" type="button" id="button"
+							class="btn btn-primary btn-lg btn-block login-button registration-submit">Register</a>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-
+	<!-- login page -->
 	<div class="page logpage">
-			<form>
-				<input type="text" class="logpage-login"><br>
-				<input type="password" class="logpage-password"><br>
-				<button type="submit" class="logpage-submit">login</button>
-			</form>
+		<div class="container">
+			<div class="row main-form">
+				<form class="" method="post" action="#">
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Your Name</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control logpage-login" name="name" id="name"
+									placeholder="Enter your Name" />
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="password" class="cols-sm-2 control-label">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg"
+										aria-hidden="true"></i></span>
+								<input type="password" class="form-control logpage-password" name="password"
+									id="password" placeholder="Enter your Password" />
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group ">
+						<a href="#" target="_blank" type="button" id="button"
+							class="btn btn-primary btn-lg btn-block login-button logpage-submit">Login</a>
+					</div>
+
+				</form>
+			</div>
 		</div>
 
+	</div>
+	<!-- error page -->
 	<div class="page error">
-			<p>error page</p>
+		<div class="container error-big">
+			<div class="row">
+				<div class="col error-container">
+					<p class="error-container-text"> Если Вы попали на эту страницу, значит Вы где-то накосячили. Вы
+						либо вышли из своей учетной записи, либо попытались ввести в адресную строку несуществующий
+						адрес. Поэтому воспользуйтесеь кнопкой внизу и приступайте к укорачиванию своих ссылок.</p>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col home-buttons">
+					<button type="submit" class="main-link btn btn-info">URLer</button>
+				</div>
+			</div>
 		</div>
+	</div>
+	<!-- error-section -->
+	<div class="error-section">
+		<p class="error-section-text"></p>
+	</div>
 	<script src="dist/bundle.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
+
 </html>
