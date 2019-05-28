@@ -5,8 +5,11 @@ export class Login {
 
   renderExitButton() {
     let exit = document.querySelector(".exit");
+    let exitButton = document.querySelector(".exit-button");
+    let account = document.querySelector(".account-button");
     exit.classList.add("visible");
-    exit.addEventListener("click", this.exitEvent);
+    exitButton.addEventListener("click", this.exitEvent);
+    account.addEventListener("click", this.accountEvent);
   }
 
   exitEvent() {
@@ -18,6 +21,11 @@ export class Login {
     let exitEvent = new Event("exitEvent");
     window.dispatchEvent(exitEvent);
     linkContainer.innerHTML = "";
+  }
+
+  accountEvent() {
+    let accountEvent = new Event("accountEvent");
+    window.dispatchEvent(accountEvent);
   }
 
   getLogin() {
@@ -38,7 +46,7 @@ export class Login {
     let login = document.querySelector(".logpage-login");
     let password = document.querySelector(".logpage-password");
     let loginArray = [];
-    fetch("http://localhost:3006/users", {
+    fetch("http://localhost:3007/users", {
       headers: {
         "Content-Type": "application/json"
       }
@@ -56,12 +64,12 @@ export class Login {
         loginArray.forEach(i => {
           if (i.login === login.value && i.password === password.value) {
             window.location.hash = "#main";
-            localStorage.setItem("login", login);
+            localStorage.setItem("login", login.value);
             this.renderExitButton();
           } else {
-            this.renderErrorSection(
-              "Проверьте введенные данные. Логин или пароль неверные."
-            );
+            // this.renderErrorSection(
+            //   "Проверьте введенные данные. Логин или пароль неверные."
+            // );
             return false;
           }
         });

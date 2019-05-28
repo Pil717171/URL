@@ -30,13 +30,40 @@ export class ShortService {
 
   sendData(data) {
     console.log(data);
-    fetch("http://localhost:3006/links", {
+    fetch(`https://clck.ru/--?url=${data}`, {
+      method: "get"
+      // headers: {
+      //   "Content-Type": "application/json"
+      // },
+      // body: JSON.stringify({
+      //   source: data
+      // })
+    }).then(res => {
+      if (res.status !== 201) {
+        res.text().then(data => {
+          this.shortLink(data);
+        });
+      }
+    });
+  }
+
+  shortLink(data) {
+    this.sendLink(data);
+    let shortLink = data;
+    this.shortLinks.push(shortLink);
+    this.renderLinks(shortLink);
+    
+  }
+
+  sendLink(data) {
+    fetch("http://localhost:3007/links", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        source: data
+        link: data,
+        login: localStorage.getItem("login")
       })
     })
       .then(res => {
@@ -46,16 +73,8 @@ export class ShortService {
         return res.json();
       })
       .then(res => {
-        this.shortLink(res);
+        console.log(res);
       });
-  }
-
-  shortLink(data) {
-    let pref = "pil/";
-    let shortLink = pref + data.id;
-    this.shortLinks.push(shortLink);
-    this.renderLinks(shortLink);
-    console.log(data);
   }
 
   renderLinks(data) {
@@ -64,7 +83,6 @@ export class ShortService {
     let span1 = document.createElement("span");
     let span2 = document.createElement("span");
     let span3 = document.createElement("span");
-    console.log(this.inp.value);
     span1.innerHTML = "Короткая ссылка -  ";
     container.setAttribute("href", this.inp.value);
     container.innerHTML = data;

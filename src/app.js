@@ -8,6 +8,7 @@ class App {
     this.pages = document.querySelectorAll(".page");
     window.addEventListener("exitEvent", this.renderHomePage.bind(this));
     window.addEventListener("checkRegister", this.checkRegister.bind(this));
+    window.addEventListener("accountEvent", this.renderAccountPage.bind(this));
     this.router = new Router();
     this.register = new Register();
     this.login = new Login();
@@ -21,7 +22,7 @@ class App {
   }
 
   init() {
-    const url = "http://localhost:3006/links";
+    const url = "http://localhost:3007/links";
     fetch(url, {
       headers: {
         "Content-Type": "application/json"
@@ -31,9 +32,31 @@ class App {
       .then(data => {
         this.links = data;
         this.initRoutes();
-        console.log(this.links);
         window.dispatchEvent(new HashChangeEvent("hashchange"));
       });
+  }
+
+  getRepeatLogin(array) {
+    let loginName = localStorage.getItem("login");
+    let loginLinkArray = [];
+    array.forEach(i => {
+      if (i.login === loginName) {
+        loginLinkArray.push(i);
+      }
+    });
+
+    this.renderPageLogin(loginLinkArray);
+    console.log(loginLinkArray);
+    console.log(loginName);
+  }
+
+  renderPageLogin(data) {
+    data.forEach(i => {
+      let span = document.createElement("span");
+      let accountPage = document.querySelector(".account-page");
+      span.innerHTML = `Архив ссылок пользователя ${i.login}. - ${i.link} <br>`;
+      accountPage.appendChild(span);
+    });
   }
 
   initRoutes() {
@@ -42,15 +65,14 @@ class App {
     this.router.addRoute("#main", this.renderMainPage.bind(this));
     this.router.addRoute("#login", this.renderLoginPage.bind(this));
     this.router.addRoute("404", this.renderErrorPage.bind(this));
+    this.router.addRoute("#account", this.renderAccountPage.bind(this));
   }
 
   renderHomePage() {
     this.pages.forEach(i => {
-      console.log(i);
       i.classList.remove("visible");
     });
     let homePage = document.querySelector(".home");
-    console.log(homePage);
     homePage.classList.add("visible");
     window.location.hash = "";
     let exit = document.querySelector(".exit");
@@ -59,11 +81,9 @@ class App {
 
   renderAboutPage() {
     this.pages.forEach(i => {
-      console.log(i);
       i.classList.remove("visible");
     });
     let aboutPage = document.querySelector(".about");
-    console.log(aboutPage);
     aboutPage.classList.add("visible");
     window.location.hash = "#about";
     let exit = document.querySelector(".exit");
@@ -74,6 +94,7 @@ class App {
     if (localStorage.getItem("login")) {
       this.pages.forEach(i => {
         i.classList.remove("visible");
+        this.getRepeatLogin(this.links);
       });
       let mainPage = document.querySelector(".main");
       mainPage.classList.add("visible");
@@ -105,6 +126,23 @@ class App {
     window.location.hash = "#login";
     let exit = document.querySelector(".exit");
     exit.classList.remove("visible");
+  }
+
+  renderAccountPage() {
+    this.pages.forEach(i => {
+      i.classList.remove("visible");
+    });
+    let accountPage = document.querySelector(".account");
+    accountPage.classList.toggle("visible");
+    window.location.hash = "#account";
+    let accountButton = document.querySelector(".account-button");
+    accountButton.style = "display: none";
+    let accountExit = document.querySelector(".account-exit-button");
+    accountExit.addEventListener("click", e => {
+      window.location.hash = "#main";
+      accountPage.classList.remove("visible");
+      accountButton.style = "display: block";
+    });
   }
 
   regBut() {

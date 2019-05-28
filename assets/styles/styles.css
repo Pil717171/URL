@@ -5,6 +5,25 @@
   height: 100%;
 }
 
+.account-button {
+  position: absolute;
+  top: 5px;
+}
+
+.big-link {
+  margin-top: 25px;
+}
+
+.account-exit-button {
+  position: absolute;
+  top: -90px;
+  width: 150px;
+}
+
+span {
+  color: white;
+}
+
 .registration {
   margin: 5px;
 }

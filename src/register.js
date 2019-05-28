@@ -11,7 +11,7 @@ export class Register {
     let button = document.querySelector(".registration-submit");
     let login = document.querySelector(".registration-login");
     let loginArray = [];
-    fetch("http://localhost:3006/users", {
+    fetch("http://localhost:3007/users", {
       headers: {
         "Content-Type": "application/json"
       }
@@ -55,7 +55,8 @@ export class Register {
 
   sendRegistration(login, password) {
     this.login.renderExitButton();
-    fetch("http://localhost:3006/users", {
+    localStorage.setItem("login", login);
+    fetch("http://localhost:3007/users", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -75,7 +76,7 @@ export class Register {
         console.log(res);
       });
     this.isRegistered = true;
-    localStorage.setItem("login", login);
+
     let event = new Event("checkRegister");
     window.dispatchEvent(event);
   }
